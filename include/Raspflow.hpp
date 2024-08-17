@@ -1,9 +1,7 @@
 #ifndef _INC_RASPFLOW_
 #define _INC_RASPFLOW_
 
-#include "BluetoothLowEnergy.hpp"
-#include "Network.hpp"
-
+#include <Application.hpp>
 #include <Arduino.h>
 
 class Raspflow : public Application {

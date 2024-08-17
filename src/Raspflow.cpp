@@ -1,5 +1,7 @@
-#include "Application.hpp"
 #include "Raspflow.hpp"
+
+#include <BluetoothLowEnergy.hpp>
+#include <Network.hpp>
 
 void Raspflow::processMessage(void* message) {
 	Serial.print(static_cast<String*>(message)->c_str());
