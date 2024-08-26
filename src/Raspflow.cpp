@@ -52,10 +52,9 @@ BluetoothLowEnergy * ble;
 Application * app;
 
 void setup() {
-	Serial.begin(115200);
-
 	app = new Raspflow();
 	app->initializeModulesPointerArray();
+	app->beginSerialPort(Serial);
 
 #ifdef __SMART_APPLICATION_WITH_BLE__
 	app->setBluetoothName("Proteus Raspflow", true);
