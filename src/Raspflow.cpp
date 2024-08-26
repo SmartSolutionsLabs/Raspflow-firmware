@@ -4,12 +4,14 @@
 #include <BluetoothLowEnergy.hpp>
 #include <Network.hpp>
 
-void Raspflow::processMessage(void* message) {
+void Raspflow::processMessage(String * message) {
 	Serial.print(static_cast<String*>(message)->c_str());
 
 	#ifdef __SMART_APPLICATION_WITH_BLE__
 	BluetoothLowEnergy::sendOut(&this->bleCharacteristics[0], "Recibido");
 	#endif
+
+	delete[] message;
 }
 
 void Raspflow::initializeModulesPointerArray() {

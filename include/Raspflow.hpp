@@ -10,7 +10,7 @@
 
 class Raspflow : public Application {
 	public:
-		void processMessage(void* message);
+		void processMessage(String * message);
 		void initializeBluetoothCharacteristicsArray();
 		void initializeModulesPointerArray();
 };
