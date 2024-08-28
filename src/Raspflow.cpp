@@ -18,7 +18,7 @@ void Raspflow::processMessage(unsigned char * message, size_t length, bool print
 	delete[] message;
 }
 
-void Raspflow::initializeModulesPointerArray() {
+void Raspflow::initializeModulesPointerArray(unsigned int quantity) {
 	if (this->modulesPointer != nullptr) {
 		while (this->modulesPointerQuantity) {
 			delete this->modulesPointer[--this->modulesPointerQuantity];
@@ -26,9 +26,9 @@ void Raspflow::initializeModulesPointerArray() {
 		delete[] this->modulesPointer;
 	}
 
-	this->modulesPointerQuantity = 1;
+	this->modulesPointerQuantity = quantity;
 
-	this->modulesPointer = new Module*[1];
+	this->modulesPointer = new Module*[quantity];
 
 	this->modulesPointer[0] = new Sensor("snsr", 1);
 	this->modulesPointer[0]->start();
@@ -59,7 +59,7 @@ Application * app;
 
 void setup() {
 	app = new Raspflow();
-	app->initializeModulesPointerArray();
+	app->initializeModulesPointerArray(1);
 	app->beginSerialPort(Serial);
 
 #ifdef __SMART_APPLICATION_WITH_BLE__
