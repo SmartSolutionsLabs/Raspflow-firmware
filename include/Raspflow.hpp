@@ -12,7 +12,7 @@ class Raspflow : public Application {
 	public:
 		void processMessage(unsigned char * message, size_t length, bool printable);
 		void initializeBluetoothCharacteristicsArray();
-		void initializeModulesPointerArray(unsigned int quantity);
+		void initializeModulesPointerArray(unsigned int quantity) override;
 };
 
 #endif
