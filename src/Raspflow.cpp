@@ -30,8 +30,8 @@ void Raspflow::initializeModulesPointerArray() {
 
 	this->modulesPointer = new Module*[1];
 
-	this->modulesPointer[1] = new Sensor("snsr", 1);
-	this->modulesPointer[1]->start();
+	this->modulesPointer[0] = new Sensor("snsr", 1);
+	this->modulesPointer[0]->start();
 }
 
 #ifdef __SMART_APPLICATION_WITH_BLE__
