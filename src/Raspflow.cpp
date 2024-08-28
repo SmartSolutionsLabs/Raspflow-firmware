@@ -4,8 +4,12 @@
 #include <BluetoothLowEnergy.hpp>
 #include <Network.hpp>
 
-void Raspflow::processMessage(String * message) {
-	Serial.print(static_cast<String*>(message)->c_str());
+void Raspflow::processMessage(unsigned char * message, size_t length, bool printable) {
+	if (printable) {
+		for (int i = 0; i < length; ++i) {
+			Serial.print((char) message[i]);
+		}
+	}
 
 	#ifdef __SMART_APPLICATION_WITH_BLE__
 	BluetoothLowEnergy::sendOut(&this->bleCharacteristics[0], "Recibido");
