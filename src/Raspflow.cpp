@@ -1,6 +1,8 @@
 #include "Raspflow.hpp"
 #include "Sensor.hpp"
+#include "Motor.hpp"
 
+#include <ArduinoJson.h>
 #include <BluetoothLowEnergy.hpp>
 #include <Network.hpp>
 
@@ -15,7 +17,19 @@ void Raspflow::processMessage(unsigned char * message, size_t length, bool print
 	BluetoothLowEnergy::sendOut(&this->bleCharacteristics[0], "Recibido");
 	#endif
 
+	JsonDocument jsonRequest;
+	deserializeJson(jsonRequest, message);
 	delete[] message;
+
+	// Execute all instructions here
+	switch(jsonRequest["cmd"].as<uint8_t>()) {
+		case 0:
+			this->initializeModulesPointerArray(2);
+			this->modulesPointer[0] = new Sensor("snsr", 1);
+			this->modulesPointer[0]->start();
+			this->modulesPointer[1] = new Motor("mtr", 1);
+			this->modulesPointer[1]->start();
+	}
 }
 
 void Raspflow::initializeModulesPointerArray(unsigned int quantity) {
@@ -29,9 +43,6 @@ void Raspflow::initializeModulesPointerArray(unsigned int quantity) {
 	this->modulesPointerQuantity = quantity;
 
 	this->modulesPointer = new Module*[quantity];
-
-	this->modulesPointer[0] = new Sensor("snsr", 1);
-	this->modulesPointer[0]->start();
 }
 
 #ifdef __SMART_APPLICATION_WITH_BLE__
