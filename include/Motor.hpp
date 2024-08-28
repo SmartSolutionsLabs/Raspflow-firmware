@@ -1,5 +1,5 @@
-#ifndef INC_SENSOR
-#define INC_SENSOR
+#ifndef INC_MOTOR
+#define INC_MOTOR
 
 #include <Module.hpp>
 
