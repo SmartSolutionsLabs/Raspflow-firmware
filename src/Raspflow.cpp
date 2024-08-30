@@ -66,7 +66,7 @@ void Raspflow::initializeBluetoothCharacteristicsArray() {
 BluetoothLowEnergy * ble;
 #endif
 
-Application * app;
+Raspflow * app;
 
 void setup() {
 	app = new Raspflow();
