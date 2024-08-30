@@ -70,7 +70,6 @@ Raspflow * app;
 
 void setup() {
 	app = new Raspflow();
-	app->initializeModulesPointerArray(1);
 	app->beginSerialPort(Serial);
 
 #ifdef __SMART_APPLICATION_WITH_BLE__
